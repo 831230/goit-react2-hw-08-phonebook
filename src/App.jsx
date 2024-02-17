@@ -1,4 +1,6 @@
 import { useState, useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from './redux/contactsSlice';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import Section from './components/Section/Section';
@@ -8,12 +10,18 @@ import ContactList from './components/ContactList/ContactList';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 const App = () => {
-  const [contacts, setContacts] = useState(
-    () => JSON.parse(localStorage.getItem('contacts')) || []
-  );
+  // const [contacts, setContacts] = useState(
+  //   () => JSON.parse(localStorage.getItem('contacts')) || []
+  // );
   const [filter, setFilter] = useState('');
 
-  const addContact = event => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => {
+    return state.contacts
+  });
+  console.log("DATA: ", contacts);
+
+  const handleAddContact = event => {
     event.preventDefault();
     const valueName = event.currentTarget.elements.name.value;
     const valueNumber = event.currentTarget.elements.number.value;
@@ -21,13 +29,14 @@ const App = () => {
     if (contacts.some(element => element.name === valueName)) {
       return Notiflix.Notify.warning(`${valueName} is already in contacts`);
     } else {
-      newContact = {
-        name: valueName,
-        number: valueNumber,
-        id: nanoid(),
-      };
+      dispatch(addContact(valueName, valueNumber))
+      // newContact = {
+      //   name: valueName,
+      //   number: valueNumber,
+      //   id: nanoid(),
+      // };
     }
-    setContacts([...contacts, newContact]);
+    // setContacts([...contacts, newContact]);
     resetForm(event);
   };
 
@@ -55,12 +64,12 @@ const App = () => {
 
   const deleteContact = id => {
     const newContacts = contacts.filter(contact => contact.id !== id);
-    setContacts(newContacts);
+    // setContacts(newContacts);
   };
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
   return (
     <div >
@@ -70,7 +79,7 @@ const App = () => {
           <ContactForm
             nameTitle="Name"
             numberTitle="Number"
-            addContact={addContact}
+            addContact={handleAddContact}
           />
         </ErrorBoundary>
 
