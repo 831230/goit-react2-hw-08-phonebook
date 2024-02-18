@@ -1,31 +1,16 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const ContactList = ({ names, btnAction }) => {
+const ContactList = ({ children }) => {
   return (
-    <ul>
-      {names &&
-        names.map(name => {
-          return (
-            <li key={name.id}>
-              {name.name}
-              &#58;&#8194;{name.number}
-              <button onClick={() => btnAction(name.id)}>Delete</button>
-            </li>
-          );
-        })}
-    </ul>
+    <div>
+      <h3>Contacs list:</h3>
+      <ul>{children}</ul>
+    </div>
   );
 };
 
 ContactList.propTypes = {
-  names: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      number: PropTypes.string,
-    })
-  ),
-  btnAction: PropTypes.func,
+  children: PropTypes.object,
 };
 
 export default ContactList;

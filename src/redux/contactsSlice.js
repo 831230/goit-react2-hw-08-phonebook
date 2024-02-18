@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "@reduxjs/toolkit";
+import { getContactWithLocaleStorage, setContactToLocaleStorage } from "../methods/methods";
 
-const contactsInitialState = JSON.parse(localStorage.getItem('contacts')) || [];
-
-console.log(contactsInitialState);
+const contactsInitialState = getContactWithLocaleStorage();
 
 export const contactsSlice = createSlice({
   name: "contacts",
@@ -12,7 +11,7 @@ export const contactsSlice = createSlice({
     addContact: {
       reducer: (state, action) => {
         state.push(action.payload);
-        localStorage.setItem('contacts', JSON.stringify(action.payload))
+        setContactToLocaleStorage(state)
       },
       prepare: (name, number) => {
         return {
@@ -23,10 +22,14 @@ export const contactsSlice = createSlice({
           }
         }
       }
+    },
+    removeContact: (state, action) => {
+      setContactToLocaleStorage(action.payload);
+      return action.payload
     }
   }
 });
 
-export const {addContact} = contactsSlice.actions;
+export const {addContact, removeContact} = contactsSlice.actions;
 
 export const contactsReducer = contactsSlice.reducer;

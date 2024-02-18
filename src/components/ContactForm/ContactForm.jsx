@@ -1,33 +1,23 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const ContactForm = ({ nameTitle, numberTitle, addContact }) => {
+const ContactForm = ({ handleAddContact }) => {
   return (
-    <div>
-      <form onSubmit={addContact}>
-        <h3>{nameTitle}</h3>
-        <input
-          type="text"
-          name="name"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-        <h3>{numberTitle}</h3>
-        <input
-          type="tel"
-          name="number"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-        <button type="submit">Add contact</button>
-      </form>
-    </div>
+    <form onSubmit={handleAddContact}>
+      <label htmlFor="name_form">
+        <p>Name</p>
+        <input id="name_form" type="text" name="name" required />
+      </label>
+      <label htmlFor="number_form">
+        <p>Number</p>
+        <input id="number_form" type="tel" name="number" required />
+      </label>
+      <button type="submit">Add contact</button>
+    </form>
   );
 };
 
 ContactForm.propTypes = {
-  nameTitle: PropTypes.string,
-  numberTitle: PropTypes.string,
-  addContact: PropTypes.func,
+  handleAddContact: PropTypes.func,
 };
 
 export default ContactForm;
