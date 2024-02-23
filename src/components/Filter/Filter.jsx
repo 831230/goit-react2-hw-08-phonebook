@@ -1,21 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
-import { selectContacts } from "../../redux/selectors";
+import { selectContacts, selectFilter, selectError } from "../../redux/selectors";
 import { setFilter } from "../../redux/filterSlice";
-import { removeContact } from "../../redux/contactsSlice";
+import { removeContact } from "../../redux/operations";
 
 // COMPONENTS
 import ContactList from "../ContactList/ContactList";
 import ContactListItem from "../ContactListItem/ContactListItem";
+import FetchErrorView from "../FetchErrorView/FetchErrorView";
 
 const Filter = () => {
-  const filter = useSelector((state) => {
-    return state.filter;
-  });
-
-  // const contacts = useSelector((state) => {
-  //   return state.contacts;
-  // });
+  const filter = useSelector(selectFilter) 
   const contacts = useSelector(selectContacts)
+  const error = useSelector(selectError);
 
   const dispatch = useDispatch();
 
@@ -25,8 +21,7 @@ const Filter = () => {
   };
 
   const handleRemoveContact = (id) => {
-    const newContacts = contacts.filter((contact) => contact.id !== id);
-    dispatch(removeContact(newContacts));
+    dispatch(removeContact(id));
   };
 
   return (
@@ -34,6 +29,7 @@ const Filter = () => {
       <p>Find contacts by name:</p>
       <input type="text" name="filter" onChange={handleFilter} value={filter} />
       <ContactList>
+        {error && <FetchErrorView/>}
         <ContactListItem
           contacts={contacts}
           filter={filter}

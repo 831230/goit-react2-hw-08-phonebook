@@ -10,7 +10,7 @@ const ContactList = ({ children }) => {
 };
 
 ContactList.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.array,
 };
 
 export default ContactList;
