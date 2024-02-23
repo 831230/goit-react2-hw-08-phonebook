@@ -1,14 +1,22 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { selectContacts } from "../../redux/selectors";
 import Notiflix from "notiflix";
+
+import { fetchContacts } from "../../redux/operations";
+
+
 import { addContact } from "../../redux/contactsSlice";
 import { clearFilter } from "../../redux/filterSlice";
 
 import ContactForm from "../ContactForm/ContactForm";
 
 const Contacts = () => {
-  const contacts = useSelector((state) => {
-    return state.contacts;
-  });
+  // const contacts = useSelector((state) => {
+  //   return state.contacts;
+  // });
+  const contacts = useSelector(selectContacts)
+  console.log(contacts);
 
   const dispatch = useDispatch();
 
@@ -26,6 +34,9 @@ const Contacts = () => {
     }
   };
 
+  useEffect(()=>{
+    dispatch(fetchContacts())
+  },[dispatch])
   return (
     <>
       <h2>Add contact</h2>
