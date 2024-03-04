@@ -26,14 +26,14 @@ const Home = () => {
       >
         {!isLoggedIn && (
           <div>
-            <h1>Welcome to the phonebook website.</h1>
+            <h1>Welcome in the phone book application.</h1>
             <h2>To access the functionality, log in.</h2>
             <h2>If you don&#39;t have an account, go to registration</h2>
           </div>
         )}
         {isLoggedIn && (
           <div>
-            <h1>Welcome {user.name} to the phonebook website.</h1>
+            <h1>Welcome {user.name} in the phone book application.</h1>
             <h2>
               You are logged in. Go to the{" "}
               <Button
@@ -44,7 +44,7 @@ const Home = () => {
               >
                 Phonebook
               </Button>{" "}
-              to work with your contacts
+              to work with your contacts.
             </h2>
           </div>
         )}

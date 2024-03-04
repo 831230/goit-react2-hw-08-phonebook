@@ -15,12 +15,18 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <BrowserRouter>
         <CssBaseline />
-        <Container fixed >
-          <Box sx={{ bgcolor: "rgb(23, 30, 36)", color: "rgb(211, 231, 248)",  minHeight: '100vh' }}>
+        <Container fixed>
+          <Box
+            sx={{
+              bgcolor: "rgb(23, 30, 36)",
+              color: "rgb(211, 231, 248)",
+              minHeight: "100vh",
+            }}
+          >
             <App />
           </Box>
         </Container>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
-); 
+);

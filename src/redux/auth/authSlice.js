@@ -18,7 +18,6 @@ const authSlice = createSlice({
       state.loading = true
     })
     .addCase(register.fulfilled, (state, action) => {
-      console.log(action);
       state.loading = false
       state.token = action.payload.token
       state.user = action.payload.user
@@ -32,7 +31,6 @@ const authSlice = createSlice({
       state.loading = true
     })
     .addCase(login.fulfilled, (state, action) => {
-      console.log(action);
       state.loading = false
       state.token = action.payload.token
       state.user = action.payload.user

@@ -1,15 +1,17 @@
-// REDUX:
-import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/auth/selectors";
+import useAuth from "../../hooks/useAuth";
+
+import UserData from "../UserData/UserData";
+
 
 const UserGreeting = () => {
-  const user = useSelector(selectUser);
+  const {  user } = useAuth();
   return (
     <>
       {!user.name ? null : (
-        <h5>
+        <><h5>
           Hello: <span>{user.name}</span>
         </h5>
+        <UserData/></>
       )}
     </>
   );
