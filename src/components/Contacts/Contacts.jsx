@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectContacts } from "../../redux/selectors";
 import Notiflix from "notiflix";
 
+// REDUX:
 import { fetchContacts, addContact } from "../../redux/operations";
-
 import { clearFilter } from "../../redux/filterSlice";
 
+// COMPONENTS:
 import ContactForm from "../ContactForm/ContactForm";
 
 const Contacts = () => {

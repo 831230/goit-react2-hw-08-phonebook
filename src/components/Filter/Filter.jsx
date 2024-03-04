@@ -1,7 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
-import { selectContacts, selectFilter, selectError } from "../../redux/selectors";
+
+// REDUX:
+import {
+  selectContacts,
+  selectFilter,
+  selectError,
+} from "../../redux/selectors";
 import { setFilter } from "../../redux/filterSlice";
 import { removeContact } from "../../redux/operations";
+
+// MATERIAL UI COMPONENTS:
+import TextField from "@mui/material/TextField";
 
 // COMPONENTS
 import ContactList from "../ContactList/ContactList";
@@ -9,8 +18,8 @@ import ContactListItem from "../ContactListItem/ContactListItem";
 import FetchErrorView from "../FetchErrorView/FetchErrorView";
 
 const Filter = () => {
-  const filter = useSelector(selectFilter) 
-  const contacts = useSelector(selectContacts)
+  const filter = useSelector(selectFilter);
+  const contacts = useSelector(selectContacts);
   const error = useSelector(selectError);
 
   const dispatch = useDispatch();
@@ -25,11 +34,24 @@ const Filter = () => {
   };
 
   return (
-    <div className="filter-container">
-      <p>Find contacts by name:</p>
-      <input type="text" name="filter" onChange={handleFilter} value={filter} />
+    <div>
+      <h4>Find contacts by name:</h4>
+      <TextField
+        id="outlined-basic"
+        label="Filter"
+        variant="outlined"
+        name="filter"
+        autoComplete="off"
+        sx={{
+          bgcolor: "rgb(41, 53, 63)",
+          input: { color: "aliceblue" },
+          label: { color: "aliceblue" },
+        }}
+        onChange={handleFilter}
+        value={filter}
+      />
       <ContactList>
-        {error && <FetchErrorView/>}
+        {error && <FetchErrorView />}
         <ContactListItem
           contacts={contacts}
           filter={filter}

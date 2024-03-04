@@ -1,17 +1,43 @@
 import PropTypes from "prop-types";
 
+// MATERIAL UI COMPONENTS:
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+
 const ContactForm = ({ handleAddContact }) => {
   return (
     <form onSubmit={handleAddContact}>
-      <label htmlFor="name_form">
-        <p>Name</p>
-        <input id="name_form" type="text" name="name" required />
-      </label>
-      <label htmlFor="number_form">
-        <p>Number</p>
-        <input id="number_form" type="tel" name="number" required />
-      </label>
-      <button type="submit">Add contact</button>
+      <Stack spacing={2} direction="column">
+        <TextField
+          id="outlined-basic"
+          label="Name"
+          variant="outlined"
+          name="name"
+          autoComplete="off"
+          sx={{
+            bgcolor: "rgb(41, 53, 63)",
+            input: { color: "aliceblue" },
+            label: { color: "aliceblue" },
+          }}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Number"
+          variant="outlined"
+          name="number"
+          autoComplete="off"
+          sx={{
+            bgcolor: "rgb(41, 53, 63)",
+            input: { color: "aliceblue" },
+            label: { color: "aliceblue" },
+          }}
+        />
+
+        <Button type="submit" variant="contained" size="small">
+          Add contact
+        </Button>
+      </Stack>
     </form>
   );
 };

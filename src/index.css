@@ -1,6 +1,10 @@
-@import-normalize; /* bring in normalize.css styles */
-
-body {
+/* #root {
+  background-color: #29353f;
+} */
+#root {
+  background-color: rgb(23, 30, 36);
+}
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -18,6 +22,15 @@ code {
 ul, li{
   list-style: none;
 }
+a{
+  color: rgb(48, 118, 184);
+  margin-right: 20px;
+  font-size: 20px;
+  letter-spacing: 0.15rem;
+}
+.active{
+  color: rgb(89, 158, 223);
+}
 
 .header{
   width: 100vw;
@@ -29,6 +42,11 @@ ul, li{
   letter-spacing: 0.2rem;
   border-bottom: 3px solid rgb(48, 118, 184);
   text-align: center;
+}
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
 }
 
 .container{
@@ -56,4 +74,4 @@ ul, li{
 }
 .refresh-btn:hover{
   background-color: rgb(44, 101, 151)
-}
+} */

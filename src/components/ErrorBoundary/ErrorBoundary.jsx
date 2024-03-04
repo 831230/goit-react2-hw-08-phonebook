@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class ErrorBoundary extends Component {
   state = { hasError: false };
-  
+
   componentDidCatch(error, info) {
     this.setState({
       hasError: true,
